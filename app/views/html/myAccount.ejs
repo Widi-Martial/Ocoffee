@@ -1,0 +1,42 @@
+<%- include ('../partials/header') %>
+
+    <div class="field_account_page">
+        <h2 class="field_account_page_title">Bonjour, faisons connaissance</h2>
+
+    <% if (locals.errorMessage) {%>
+        <em class="alert_error_message"><%= errorMessage %></em>
+    <%}%>
+        <div class="field_account">
+             <!--Formulaire de d'inscription-->
+            <form class="register_form" action="/registerAccount" method="post">
+                <fieldset class="field_form">
+                    <legend>Créez votre compte</legend>
+                    <label for="firstname">Votre prénom</label>
+                    <input type="text" name="firstname" id="firstname">
+                    <label for="lastname">Votre nom</label>
+                    <input type="text" name="lastname" id="lastname">
+                    <label for="mail">Votre adresse mail</label>
+                    <input type="email" name="email" id="mail">
+                    <label for="passwordRegister">Entrez un mot de passe</label>
+                    <input type="password" name="passwordRegister" required="required" id="passwordRegister">
+                    <label for="passwordRegisterConfirm">Confirmer votre mot de passe</label>
+                    <input type="password" name="passwordRegisterConfirm" required="required" id="passwordRegisterConfirm">
+                    <button style= "cursor:pointer" class="sub_button_form" type="submit"> Valider </button>
+                </fieldset>
+            </form>
+
+            <!--Formulaire de connexion-->
+            <form class="login_form" action="/monCompte" method="post">
+                <fieldset class="field_form">
+                        <legend>Connectez vous</legend>
+                        <label for="mail">Entez votre mail</label>
+                        <input type="email" required="required" name="email" placeholder="votremail@mail.fr" id="mail">    
+                        <label for="password">Entrez votre mot de passe</label>
+                        <input type="password" name="password" required="required" id="password">
+                    <button style= "cursor:pointer" class="sub_button_form" type="submit"> Connexion </button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+<%- include ('../partials/footer') %>

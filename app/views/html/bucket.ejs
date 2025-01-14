@@ -1,0 +1,37 @@
+<%- include ('../partials/header') %>
+
+<div class="bucket_div">
+<h2 class="title_bucket">Votre panier</h2>
+
+<% if (articlesBucket.length === 0) { %>
+    <p class="empty_bucket_message">Votre panier est vide ! <span style="color: rgb(53, 53, 40);">😢</span>  </p>
+<% } %>
+
+<% articlesBucket.forEach(article => { %>
+ <hr>
+    <article class="article_bucket">
+        <div class="left_article_bucket">
+            <img class="article_bucket_image" src="./Images/<%= article.reference %>.png" alt="Image du produit">
+            <ul class="article_bucket_caract">
+                <li><h3 class="article_bucket_title"> <a href="/catalog/detail/<%= article.id %>"> <%= article.nom %> </a></h3></li>
+                <li class="article_bucket_type"><%= article.caracteristique_principale %></li>
+            </ul>
+        </div>
+       
+        <div class="right_article_bucket">
+            <p class="article_bucket_price"><%= article.prix_au_kilo %>€/kg</p>
+            <a title="Supprimer du panier" href="/delToBucket/<%= article.id %>"> <img class="article_trash_image" src="../Images/poubelle.png" alt="image de poubelle pour supprimer du panier"></a>
+        </div>
+    </article>
+<hr>
+<% }) %>
+
+<div class="section_total_field">
+    <% if (total.sum > 0) { %>
+    <input class="total_field eventNone" type="text" name="total" id="price_total" value="<%= total.sum %>€" readonly="readonly">
+    <% } %>
+   
+</div>
+
+</div> 
+<%- include ('../partials/footer') %>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../css/reset.css">
+    <link rel="stylesheet" href="/../css/style.css">
+    <title>Ocoffee</title>
+</head>
+<body>
+    <header class="field_title">
+        <a class="linkHome_big_title" href="/"><div class="title_text_logo">
+            <img class="logo_title" src="/../Images/logo.svg" alt="logo ocoffee">
+            <h1 class="big_title">OCoffee</h1>
+        </div></a>
+        <nav class="field_menu">
+            <div class="bucket_field">
+                <span class="bucket_nbOf" id="bucketNumber"> <%= locals.buketNb %> </span> <!--alimenté cette valeur-->
+                <a title="Voire votre panier" href="/bucket"> <img class="bucket" src="/../Images/bucketSession.png" alt="bucket"></a>
+            </div>
+         
+            <ul class="list_menu hidden">
+                <li class="list_menu_link"> <a class="menu_link" href="/">Accueil</a> </li>
+                <li class="list_menu_link"> <a class="menu_link" href="/catalog">| Catalogue |</a> </li>
+                <li class="list_menu_link"> <a class="menu_link" href="/boutique">Boutique |</a> </li>
+
+                <li class="list_menu_link"> <a class="menu_link" href="/monCompte">Mon compte</a> </li>
+            </ul> 
+            <a class="burger_menu">
+                <span class="burger_menu_items"></span>
+                <span class="burger_menu_items"></span>
+                <span class="burger_menu_items"></span>
+            </a> 
+        </nav> 
+        
+    </header>
+    <main>

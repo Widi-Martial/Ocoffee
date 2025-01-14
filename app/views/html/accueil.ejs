@@ -1,0 +1,34 @@
+<%- include ('../partials/header') %>
+
+        <div class="main_top">
+            <article class="left_main_top">
+            <h2 class="main_top_title">Les meilleurs cafés</h2>
+            <p class="main_top_text">Alliant savoir-faire traditionnel du torréfacteur et nouvelle technologie, 
+                la Brûlerie d’Alré sélectionne pour vous des cafés d’exception venant des quatre coins du monde. 
+                Nous vous proposons des cafés 100 % arabica, issus d’une récolte manuelle et sélective. 
+                Nos grains de cafés sont ensuite torréfiés dans le respect de leurs arômes et saveurs afin 
+                de vous offrir une dégustation toujours aussi surprenante. 
+                Tous sont torréfiés et conditionnés dans notre entreprise de Plougoumelen en Bretagne.
+            </p>
+            <a class="catalog_link" href="/catalog">Voir le catalogue</a>
+            </article>
+
+            <img class="right_main_top" src="../Images/about.jpg" alt="image de café qui donne envie">
+        </div>
+        <h2 class="main_bottom_title">Nouveautés</h2>
+
+        <div class="main_bottom">
+            <% newsCoffees.forEach(newsCoffee => { %>
+
+            <article class="left_main_bottom">
+                <h3 class="title_article_home">  <%=newsCoffee.nom%> </h3>
+               <img class="img_article" src="../Images/<%=newsCoffee.reference%>.png" alt="image article">
+                <a class="new_link" href="/catalog/detail/<%=newsCoffee.id%>">Decouvrir</a>
+            </article>
+                
+            <% }); %>
+           
+        
+        </div>
+        
+<%- include ('../partials/footer') %>

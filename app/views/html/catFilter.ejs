@@ -1,0 +1,53 @@
+<%- include ('../partials/header') %>
+
+    <div class="catalogue_title_background">
+        <h2 class="catalogue_title">Notre catalogue</h>   
+    </div>
+        
+
+    <div class="sort_item hidden">        
+        <form action='/catalog' method="post">
+        <label for="category"></label>
+            <select name="category" id="category" classe="sort_coffee hid">
+            <option value="" selected disabled hidden>Choisissez votre type</option>
+            <!--boucle type-->
+        <% types.forEach(type => { %>
+            <option value="<%= type.caracteristique_principale %>"> <%= type.caracteristique_principale %> </option> 
+        <% }) %>    
+           </select>
+        <input class="valid_category" type="submit" value="&#10016;"></input>
+        </form>
+    </div> 
+
+        <div class="main_bottom">
+
+        <% getcoffee.forEach(coffee => { %>
+            
+                    <article class="left_main_bottom">
+                        <h2 class="title_article_home title_produc"><%= coffee.nom %></h2>
+                        <img class="catalog_img" src="../Images/<%= coffee.reference %>.png" alt="image article">
+                        <p class="description_product"><%= coffee.description %></p>
+                        <div class="info_article">
+                            <p>Type : <span><%= coffee.caracteristique_principale %></span> </p>
+                            <p>Origine : <span><%= coffee.origine %></span></p>
+                            <p>Prix : <span><%= coffee.prix_au_kilo %> €/kg</span></p>
+
+                            <div class="buy_field">
+                                <p>Disponibilité : <span class = <%= coffee.disponible ?  "green" :  "red" %>> &bull; </span> </p>
+                                <a title="Ajouter au panier" href="/addToBucket/<%= coffee.id %>" class= <%= coffee.disponible ?  "" : "eventNone" %>>
+                                    <img class="bucket_link <%= coffee.disponible ? (!bucketId.includes(coffee.id) ?  "" : "not") :  "not_Red" %>" src="../Images/addToBucket.png" alt="image du lien d'ajout au panier">
+                                </a>
+                            </div>
+                            
+                        </div>
+                        <a class="new_link" href="/catalog/detail/<%=coffee.id%>">Decouvrir</a>
+                    </article>
+        <% }) %>
+
+        </div>
+        <div class="btn_show_article_parent">
+            <a class="btn_show_article" href="/catalog/all">Voir tous les produits</a>
+        </div>
+
+        
+<%- include ('../partials/footer') %>
