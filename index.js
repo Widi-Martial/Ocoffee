@@ -1,7 +1,6 @@
-require('dotenv').config();
-const express = require('express');
+require ('dotenv/config');
+const express = require('ultimate-express');
 const session = require('express-session');
-const bodyParser = require('body-parser');
 
 
 const app = express();
@@ -9,10 +8,9 @@ const router = require('./app/router');
 
 
 app.use(express.urlencoded({extended: true}))
-
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', 'app/views');
-
 
 
 app.use(session({
@@ -31,7 +29,6 @@ app.use((req,res, next) => {
   next();
 });
 
-app.use(express.static('public'));
 
 app.use(router);
 

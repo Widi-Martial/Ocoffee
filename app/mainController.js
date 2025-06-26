@@ -15,15 +15,17 @@ const mainController = {
     },
 
     catalog : async (req,res) => {
-        const id = req.params.id
+        const id = req.params.all;
+        
         const bucketId = req.session.bookmark
         types = await dataMapper.type();
+        let coffees;
         try {
             if (!id) {
-                const coffees = await dataMapper.product();
+                coffees = await dataMapper.product();
                 res.render('./html/catalog', {coffees, types, bucketId});
             } else {
-                const coffees = await dataMapper.allProduct();
+                coffees = await dataMapper.allProduct();
                 res.render('./html/catalog', {coffees, types, bucketId})
             } 
 
@@ -39,7 +41,7 @@ const mainController = {
 
         try {
             const detailP = await dataMapper.getProductById(id);
-            res.render('detail', {detailP})
+            res.render('./html/detail', {detailP})
             
             
         } catch (error) {
