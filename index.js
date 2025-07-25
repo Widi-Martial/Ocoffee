@@ -1,11 +1,10 @@
-require ('dotenv/config');
-const express = require('ultimate-express');
-const session = require('express-session');
-
+import dotenv from 'dotenv';
+dotenv.config()
+import express from 'ultimate-express';
+import session from 'express-session';
+import { router } from './app/router.js';
 
 const app = express();
-const router = require('./app/router');
-
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'));

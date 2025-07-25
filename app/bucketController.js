@@ -1,6 +1,6 @@
-const dataMapper = require('./dataMapper');
+import { dataMapper } from './dataMapper.js';
 
-const bucketContoller = {
+export const bucketContoller = {
 
     addToBucket : (req, res) => {
         const id = parseInt(req.params.id);
@@ -23,4 +23,4 @@ const bucketContoller = {
 }
 
 
-module.exports = bucketContoller;
+// module.exports = bucketContoller;

@@ -1,10 +1,9 @@
-const express = require('ultimate-express');
-const router = express.Router();
+import express from 'ultimate-express';
+import { mainController } from './mainController.js';
+import accountController from './accountController.js';
+import { bucketContoller } from './bucketController.js';
 
-const mainController = require('./mainController');
-const bucketContoller = require('./bucketController');
-const accountController = require('./accountController');
-
+export const router = express.Router();
 
 router.post('/catalog', mainController.getCoffeeCategory);
 router.get('/', mainController.homepage);
@@ -23,4 +22,4 @@ router.post('/registerAccount', accountController.registerUser)
 
 
 
-module.exports = router;
+//module.exports = router;

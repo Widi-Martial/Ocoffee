@@ -1,6 +1,6 @@
-const dataMapper = require('./dataMapper.js');
-const validator = require("email-validator");
-const bcrypt = require('bcrypt');
+import { dataMapper } from './dataMapper.js';
+import { validate } from "email-validator";
+import { hash } from 'bcrypt';
 const saltRounds = 10;
 
 
@@ -18,7 +18,7 @@ const accountController = {
         return res.status(422).render('./html/myAccount',{ errorMessage : "Le mot de passe et sa confirmation doivent être similaires"})
     }; 
     //Vérifier le format de l'adresse mail
-    if (!validator.validate(user.email)){
+    if (!validate(user.email)){
         return res.status(422).render('./html/myAccount',{ errorMessage : "L'adresse mail n'est pas valide"})
     };
     //Vérifier que l'addresse mail n'existe pas déja en base
@@ -27,7 +27,7 @@ const accountController = {
         return res.status(422).render('./html/myAccount',{ errorMessage : "Adresse mail déja utilisée"}) 
     }
     //chiffrer le mot de passe
-    const UserHashPassword = await bcrypt.hash(user.passwordRegisterConfirm, saltRounds)
+    const UserHashPassword = await hash(user.passwordRegisterConfirm, saltRounds)
 
     const userCreate = await dataMapper.insertUser(user, UserHashPassword);
     console.log(userCreate);
@@ -42,4 +42,4 @@ const accountController = {
     }
 }
 
-module.exports = accountController;
+export default accountController;

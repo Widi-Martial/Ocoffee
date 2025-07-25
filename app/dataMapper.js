@@ -1,49 +1,50 @@
-const dataBase = require ('./clientDB.js');
+import {client} from './clientDB.js';
 
-const dataMapper = {
 
-    async newProduct () {
+export const dataMapper = {
+
+    async newProduct() {
         const query = "SELECT * FROM cafe ORDER BY reference DESC LIMIT 3";
-        const result = await dataBase.query(query);
+        const result = await client.query(query);
         return result.rows
     },
 
-    async product () {
+    async product() {
         const query = "SELECT * FROM cafe ORDER BY RANDOM() LIMIT 3";
-        const result = await dataBase.query(query);
+        const result = await client.query(query);
         return result.rows
     },
 
-    async allProduct () {
+    async allProducts() {
         const query = "SELECT * FROM cafe";
-        const result = await dataBase.query(query);
+        const result = await client.query(query);
         return result.rows
     },
 
     async getAllProductBucket(id) {
-        const result = await dataBase.query(`SELECT * FROM "cafe" WHERE id = ANY($1::int[])`, [id]) 
+        const result = await client.query(`SELECT * FROM "cafe" WHERE id = ANY($1::int[])`, [id]) 
         return result.rows
     },
 
     async getTotalProductBucket(id) {
-        const result = await dataBase.query(`SELECT SUM(prix_au_kilo) FROM cafe WHERE id = ANY($1::int[])`, [id])
+        const result = await client.query(`SELECT SUM(prix_au_kilo) FROM cafe WHERE id = ANY($1::int[])`, [id])
         return result.rows[0]
     },
 
-    async type () {
+    async type() {
         const query = "SELECT caracteristique_principale  FROM cafe GROUP BY caracteristique_principale ";
-        const result = await dataBase.query(query);
+        const result = await client.query(query);
         return result.rows
     },
 
         async getProductById(id) {
-        const result = await dataBase.query(`SELECT * FROM cafe WHERE "id"= $1`, [id]);
+        const result = await client.query(`SELECT * FROM cafe WHERE "id"= $1`, [id]);
         return result.rows[0]
     },
 
     
     async getProductByCategory(category) {
-        const result = await dataBase.query(`SELECT * FROM cafe WHERE "caracteristique_principale"= $1`, [category]);
+        const result = await client.query(`SELECT * FROM cafe WHERE "caracteristique_principale"= $1`, [category]);
         return result.rows
     },
 
@@ -56,7 +57,7 @@ const dataMapper = {
     },
 
     async searchSameUsersMail(mail) {
-        const result = await dataBase.query
+        const result = await client.query
         (`SELECT email FROM "user" WHERE email = $1`,[mail]);
         return result.rows[0] || null
     }
@@ -64,4 +65,4 @@ const dataMapper = {
 
 
 
-module.exports = dataMapper;
+// module.exports = dataMapper;

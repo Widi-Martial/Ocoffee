@@ -1,5 +1,6 @@
 {
   "name": "project-ocoffee-widi-martial",
+  "type": "module",
   "version": "1.0.0",
   "description": "mise en place d'un site sur le café",
   "main": "index.js",

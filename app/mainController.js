@@ -1,6 +1,6 @@
-const dataMapper = require('./dataMapper');
+import { dataMapper } from './dataMapper.js';
 
-const mainController = {
+export const mainController = {
 
     homepage : async (req,res) => {
         try {
@@ -16,16 +16,16 @@ const mainController = {
 
     catalog : async (req,res) => {
         const id = req.params.all;
-        
         const bucketId = req.session.bookmark
-        types = await dataMapper.type();
+        const types = await dataMapper.type();
         let coffees;
+
         try {
             if (!id) {
                 coffees = await dataMapper.product();
                 res.render('./html/catalog', {coffees, types, bucketId});
             } else {
-                coffees = await dataMapper.allProduct();
+                coffees = await dataMapper.allProducts();
                 res.render('./html/catalog', {coffees, types, bucketId})
             } 
 
@@ -52,7 +52,7 @@ const mainController = {
 
     getCoffeeCategory : async (req,res) => {
         const bucketId = req.session.bookmark
-        types = await dataMapper.type();
+        const types = await dataMapper.type();
         const category = req.body.category;
         try {
         const getcoffee = await dataMapper.getProductByCategory(category); 
@@ -73,4 +73,4 @@ const mainController = {
 }
 
 
-module.exports = mainController;
+// module.exports = mainController;
